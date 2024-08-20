@@ -18,6 +18,7 @@ def main():
     (f)etch a book record
     (c)reate a book record
     (e)dit a book record
+    (d)elete a book record
           """)
 
     choice = input("> ")
@@ -105,6 +106,38 @@ def main():
             'Available': available
         })
         print("Record updated sucessfully.")        
+
+    elif choice == "d":
+        isbn = int(input("Please enter the ISBN number of the book you want to delete: "))
+        
+        searchformula = match({"ISBN": isbn})
+        records = table.all(formula=searchformula)
+
+        if not records:
+            print("No matching records found.")
+        else:
+            for record in records:
+                id = record['id']
+        
+        print("Are you sure you wish to delete this record? (y/n)")
+        confirm = input("Confirm deletion: ")
+
+        while confirm not in ["y", "n"]:
+            print(
+                "Invalid input for confirmation. Please enter either 'y' or 'n'."
+            )
+            confirm = input("Confirm deletion: ")
+
+        if confirm == "y":
+            table.delete(id)
+            print("Record deleted sucessfully.")
+            time.sleep(3)
+        elif confirm == "n":
+            print("Deletion cancelled.")
+            time.sleep(3)
+        else:
+            print("Invalid input.")
+            time.sleep(3)
 
     else:
         print("Invalid Selection")
