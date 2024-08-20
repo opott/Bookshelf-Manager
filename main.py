@@ -46,7 +46,9 @@ def main():
         available = input("Available? (y/n): ")
 
         while available not in ["y", "n"]:
-            print("Invalid input for availability. Please enter either 'y' or 'n'.")
+            print(
+                "Invalid input for availability. Please enter either 'y' or 'n'."
+            )
             available = input("Available? (y/n): ")
 
         if available == "y":
@@ -54,9 +56,15 @@ def main():
         else:
             available = "No"
 
-        table.create({'ISBN': isbn, 'Title': title, 'Author': author, 'Shelf': shelf, 'Available': available})
+        table.create({
+            'ISBN': isbn,
+            'Title': title,
+            'Author': author,
+            'Shelf': shelf,
+            'Available': available
+        })
         print("Record created sucessfully.")
-        
+
         time.sleep(3)
 
     else:
