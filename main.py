@@ -15,7 +15,8 @@ def main():
     Welcome to Bookshelf Manager.
     What would you like to do?
 
-    (f)etch a book record  
+    (f)etch a book record
+    (c)reate a book record
           """)
 
     choice = input("> ")
@@ -35,6 +36,27 @@ def main():
                 print("Title: " + record['fields']['Title'])
                 print("Author: " + record['fields']['Author'])
 
+        time.sleep(3)
+
+    elif choice == "c":
+        isbn = int(input("Please enter the ISBN number of the book: "))
+        title = input("Please enter the title of the book: ")
+        author = input("Please enter the author of the book: ")
+        shelf = input("Please enter the bookshelf: ")
+        available = input("Available? (y/n): ")
+
+        while available not in ["y", "n"]:
+            print("Invalid input for availability. Please enter either 'y' or 'n'.")
+            available = input("Available? (y/n): ")
+
+        if available == "y":
+            available = "Yes"
+        else:
+            available = "No"
+
+        table.create({'ISBN': isbn, 'Title': title, 'Author': author, 'Shelf': shelf, 'Available': available})
+        print("Record created sucessfully.")
+        
         time.sleep(3)
 
     else:
