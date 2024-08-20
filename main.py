@@ -1,4 +1,5 @@
 import os
+import time
 from pyairtable import Api
 from pyairtable.formulas import match
 from dotenv import load_dotenv
@@ -25,14 +26,18 @@ def main():
         records = table.all(formula=searchformula)
 
         if not records:
-                print("No matching records found.")
+            print("No matching records found.")
         else:
             for record in records:
                 print("ISBN: " + record['fields']['ISBN']['text'])
                 print("Title: " + record['fields']['Title'])
                 print("Author: " + record['fields']['Author'])
+        
+        time.sleep(3)
+        
     else:
         print("Invalid Selection")
+        time.sleep(3)
 
 
 while True:
