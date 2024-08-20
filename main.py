@@ -34,7 +34,8 @@ def main():
             print("No matching records found.")
         else:
             for record in records:
-                print("ISBN: " + record['fields']['ISBN']['text'])
+                isbn = str(record['fields']['ISBN'])
+                print("ISBN: " + isbn)
                 print("Title: " + record['fields']['Title'])
                 print("Author: " + record['fields']['Author'])
                 print("Shelf: " + record['fields']['Shelf'])
@@ -43,7 +44,7 @@ def main():
         time.sleep(3)
 
     elif choice == "c":
-        isbn = int(input("Please enter the ISBN number of the book: "))
+        isbn = input("Please enter the ISBN number of the book: ")
         title = input("Please enter the title of the book: ")
         author = input("Please enter the author of the book: ")
         shelf = input("Please enter the bookshelf: ")
