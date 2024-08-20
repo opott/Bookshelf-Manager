@@ -17,6 +17,7 @@ def main():
 
     (f)etch a book record
     (c)reate a book record
+    (e)dit a book record
           """)
 
     choice = input("> ")
@@ -68,6 +69,42 @@ def main():
         print("Record created sucessfully.")
 
         time.sleep(3)
+
+    elif choice == "e":
+        isbn = int(input("Please enter the ISBN number of the book you want to edit: "))
+
+        searchformula = match({"ISBN": isbn})
+        records = table.all(formula=searchformula)
+
+        if not records:
+            print("No matching records found.")
+        else:
+            for record in records:
+                id = record['id']
+        
+        title = input("Please enter the new title: ")
+        author = input("Please enter the new author: ")
+        shelf = input("Please enter the new shelf: ")
+        available = input("Please enter the new availability (y/n): ")
+
+        while available not in ["y", "n"]:
+            print(
+                "Invalid input for availability. Please enter either 'y' or 'n'."
+            )
+            available = input("Available? (y/n): ")
+
+        if available == "y":
+            available = "Yes"
+        else:
+            available = "No"
+
+        table.update(id, {
+            'Title': title,
+            'Author': author,
+            'Shelf': shelf,
+            'Available': available
+        })
+        print("Record updated sucessfully.")        
 
     else:
         print("Invalid Selection")
