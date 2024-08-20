@@ -35,6 +35,8 @@ def main():
                 print("ISBN: " + record['fields']['ISBN']['text'])
                 print("Title: " + record['fields']['Title'])
                 print("Author: " + record['fields']['Author'])
+                print("Shelf: " + record['fields']['Shelf'])
+                print("Available: " + record['fields']['Available'])
 
         time.sleep(3)
 
