@@ -9,21 +9,7 @@ load_dotenv()
 api = Api(os.getenv('AIRTABLE_PAT'))
 table = api.table(os.getenv('BASE_ID'), os.getenv('TABLE_ID'))
 
-
-def main():
-    print("""
-    Welcome to Bookshelf Manager.
-    What would you like to do?
-
-    (f)etch a book record
-    (c)reate a book record
-    (e)dit a book record
-    (d)elete a book record
-          """)
-
-    choice = input("> ")
-
-    if choice == "f":
+def fetch():
         isbn = input(
             "Please enter the ISBN number of the book you are looking for: ")
 
@@ -43,7 +29,7 @@ def main():
 
         time.sleep(3)
 
-    elif choice == "c":
+def create():
         isbn = input("Please enter the ISBN number of the book: ")
         title = input("Please enter the title of the book: ")
         author = input("Please enter the author of the book: ")
@@ -72,7 +58,7 @@ def main():
 
         time.sleep(3)
 
-    elif choice == "e":
+def edit():
         isbn = int(
             input(
                 "Please enter the ISBN number of the book you want to edit: "))
@@ -111,7 +97,7 @@ def main():
             })
         print("Record updated sucessfully.")
 
-    elif choice == "d":
+def delete():
         isbn = int(
             input(
                 "Please enter the ISBN number of the book you want to delete: "
@@ -146,6 +132,27 @@ def main():
             print("Invalid input.")
             time.sleep(3)
 
+def main():
+    print("""
+    Welcome to Bookshelf Manager.
+    What would you like to do?
+
+    (f)etch a book record
+    (c)reate a book record
+    (e)dit a book record
+    (d)elete a book record
+          """)
+
+    choice = input("> ")
+
+    if choice == "f":
+            fetch()
+    elif choice == "c":
+        create()
+    elif choice == "e":
+        edit()
+    elif choice == "d":
+        delete()
     else:
         print("Invalid Selection")
         time.sleep(3)
