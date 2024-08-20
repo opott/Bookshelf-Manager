@@ -9,6 +9,7 @@ load_dotenv()
 api = Api(os.getenv('AIRTABLE_PAT'))
 table = api.table(os.getenv('BASE_ID'), os.getenv('TABLE_ID'))
 
+
 def main():
     print("""
     Welcome to Bookshelf Manager.
@@ -16,11 +17,12 @@ def main():
 
     (f)etch a book record  
           """)
-    
-    choice  = input("> ")
+
+    choice = input("> ")
 
     if choice == "f":
-        isbn = input("Please enter the ISBN number of the book you are looking for: ")
+        isbn = input(
+            "Please enter the ISBN number of the book you are looking for: ")
 
         searchformula = match({"ISBN": isbn})
         records = table.all(formula=searchformula)
@@ -32,9 +34,9 @@ def main():
                 print("ISBN: " + record['fields']['ISBN']['text'])
                 print("Title: " + record['fields']['Title'])
                 print("Author: " + record['fields']['Author'])
-        
+
         time.sleep(3)
-        
+
     else:
         print("Invalid Selection")
         time.sleep(3)
