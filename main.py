@@ -34,4 +34,6 @@ def main():
     else:
         print("Invalid Selection")
 
-main()
+
+while True:
+    main()
