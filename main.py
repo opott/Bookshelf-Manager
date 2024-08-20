@@ -24,10 +24,13 @@ def main():
         searchformula = match({"ISBN": isbn})
         records = table.all(formula=searchformula)
 
-        for record in records:
-            print("ISBN: " + record['fields']['ISBN']['text'])
-            print("Title: " + record['fields']['Title'])
-            print("Author: " + record['fields']['Author'])
+        if not records:
+                print("No matching records found.")
+        else:
+            for record in records:
+                print("ISBN: " + record['fields']['ISBN']['text'])
+                print("Title: " + record['fields']['Title'])
+                print("Author: " + record['fields']['Author'])
     else:
         print("Invalid Selection")
 
