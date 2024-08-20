@@ -71,7 +71,9 @@ def main():
         time.sleep(3)
 
     elif choice == "e":
-        isbn = int(input("Please enter the ISBN number of the book you want to edit: "))
+        isbn = int(
+            input(
+                "Please enter the ISBN number of the book you want to edit: "))
 
         searchformula = match({"ISBN": isbn})
         records = table.all(formula=searchformula)
@@ -81,7 +83,7 @@ def main():
         else:
             for record in records:
                 id = record['id']
-        
+
         title = input("Please enter the new title: ")
         author = input("Please enter the new author: ")
         shelf = input("Please enter the new shelf: ")
@@ -98,13 +100,14 @@ def main():
         else:
             available = "No"
 
-        table.update(id, {
-            'Title': title,
-            'Author': author,
-            'Shelf': shelf,
-            'Available': available
-        })
-        print("Record updated sucessfully.")        
+        table.update(
+            id, {
+                'Title': title,
+                'Author': author,
+                'Shelf': shelf,
+                'Available': available
+            })
+        print("Record updated sucessfully.")
 
     else:
         print("Invalid Selection")
